@@ -20,11 +20,8 @@ use st7789::{BacklightState, Orientation, ST7789};
 // Embedded Graphics
 use embedded_graphics::{
     image::{Image, ImageRawLE},
-    mono_font::{MonoTextStyle, ascii::FONT_6X13_ITALIC},
     pixelcolor::Rgb565,
     prelude::*,
-    primitives::*,
-    text::Text,
 };
 
 // 屏幕尺寸常量（240x240）
@@ -140,7 +137,7 @@ async fn main(_spawner: Spawner) -> ! {
     let encoder_ch2_pin = QeiPin::new_ch2(p.PE11);
 
     // 创建QEI实例
-    let mut qei = Qei::new(p.TIM1, encoder_ch1_pin, encoder_ch2_pin);
+    let qei = Qei::new(p.TIM1, encoder_ch1_pin, encoder_ch2_pin);
 
     // 获取初始位置
     let mut last_position = qei.count() as i32;
